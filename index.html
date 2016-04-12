@@ -6,7 +6,7 @@
         <title>Dungeons and Dragons Character Creator</title>
     </head>
     <body ng-app='characterCreation'>
-        <div class='character' ng-controller='characterCtrl'>
+        <div class='character' ng-controller='characterCtrl' ng-cloak>
             <h2 ng-hide='character.editing' class='name'>Name: {{character.name}}</h2>
             <label ng-show='character.editing' ng-model='character.name'>Name: </label>
             <input ng-show='character.editing' type='text' ng-model='character.name' />
