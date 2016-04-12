@@ -1,25 +1,33 @@
-<!DOCTYPE html /> 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>AngularJS Learning</title>
-        <link rel='stylesheet' href='styles/main.css' />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Dungeons and Dragons Character Creator</title>
     </head>
-    <body ng-app='todolistapp'>
-        <h1>My TODOs</h1>
-        <div ng-controller='mainCtrl' class='list'>
-            <div class='item' ng-class='{"editing": editing, "edited": todo.edited}' ng-repeat='todo in todos'>
-                <input ng-model='todo.completed' type='checkbox' />
-                <label ng-hide='editing' ng-click='editing = true;'>{{todo.name}}</label>
-                <input ng-show='editing' ng-change='todo.edited = true' ng-blur='editing = false;' ng-model='todo.name' class='editing-label' type='text' />
-                <div class='actions'>
-                    <button ng-click='helloWorld()'>Save</button>
-                    <button class='delete'>Delete</button>
-                </div>
-            </div>
+    <body ng-app='characterCreation'>
+        <div class='character' ng-controller='characterCtrl'>
+            <h2 ng-hide='character.editing' class='name'>Name: {{character.name}}</h2>
+            <label ng-show='character.editing' ng-model='character.name'>Name: </label>
+            <input ng-show='character.editing' type='text' ng-model='character.name' />
+            <p ng-hide='character.editing' class='race'>Race: {{character.race}}</p>
+            <label ng-show='character.editing' ng-model='character.race'>Race: </label>
+            <input ng-show='character.editing' type='text' ng-model='character.race' />
+            <ul class='stats'>
+                <li ng-repeat='stat in character.stats'>
+                    <p ng-hide='character.editing'>
+                        <span class='title'>{{stat.name}}</span>: {{stat.value}}
+                    </p>
+                    <label ng-show='character.editing' ng-model='stat.value'>{{stat.name}}: </label>
+                    <input ng-show='character.editing' type='number' min='0' max='20' step='1' ng-model='stat.value' />
+                </li>
+            </ul>
+            <button class='edit_button' ng-click='character.editing = !character.editing'>
+                {{!character.editing ? 'Edit Character': 'Save'}}
+            </button>
         </div>
         <script src='vendor/angular.min.js'></script>
         <script src='scripts/app.js'></script>
+        <script src='scripts/controllers/character.js'></script>
     </body>
 </html>
-
