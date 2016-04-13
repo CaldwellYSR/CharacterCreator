@@ -14,12 +14,12 @@
             <label ng-show='character.editing' ng-model='character.race'>Race: </label>
             <input ng-show='character.editing' type='text' ng-model='character.race' />
             <ul class='stats'>
-                <li ng-repeat='stat in character.stats'>
+                <li ng-repeat='(stat,value) in character.stats'>
                     <p ng-hide='character.editing'>
-                        <span class='title'>{{stat.name}}</span>: {{stat.value}}
+                        <span class='title'>{{stat}}</span>: {{value}}
                     </p>
-                    <label ng-show='character.editing' ng-model='stat.value'>{{stat.name}}: </label>
-                    <input ng-show='character.editing' type='number' min='0' max='20' step='1' ng-model='stat.value' />
+                    <label ng-show='character.editing' ng-model='value'>{{stat}}: </label>
+                    <input ng-show='character.editing' type='number' min='0' max='20' step='1' ng-model='value' />
                 </li>
             </ul>
             <button class='edit_button' ng-click='character.editing = !character.editing'>
@@ -29,5 +29,6 @@
         <script src='vendor/angular.min.js'></script>
         <script src='scripts/app.js'></script>
         <script src='scripts/controllers/character.js'></script>
+        <script src='scripts/services/stats.js'></script>
     </body>
 </html>

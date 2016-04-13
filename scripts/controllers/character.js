@@ -1,35 +1,13 @@
 "use strict";
 
 angular.module('characterCreation')
-.controller('characterCtrl', function($scope) {
+.controller('characterCtrl', function($scope, statsService) {
     $scope.character = {
-        name: 'Character Name',
-        race: 'human',
-        stats: [
-            { 
-                name: 'strength', 
-                value: 0 
-            },
-            { 
-                name: 'dexterity', 
-                value: 0 
-            },
-            { 
-                name: 'constitution', 
-                value: 0 
-            },
-            { 
-                name: 'intelligence', 
-                value: 0 
-            },
-            { 
-                name: 'wisdom', 
-                value: 0 
-            },
-            { 
-                name: 'charisma', 
-                value: 0 
-            }
-        ]
+        "name": "Character Name",
+        "race": "Human"
     };
+    statsService.getStats(function(response) {
+        console.log(response.data);
+        $scope.character.stats = response.data;
+    });
 });
