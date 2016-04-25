@@ -13,7 +13,15 @@
             <input ng-show='character.editing' type='text' ng-model='character.name' />
             <p ng-hide='character.editing' class='race'>Race: {{character.race}}</p>
             <label ng-show='character.editing' ng-model='character.race'>Race: </label>
-            <input ng-show='character.editing' type='text' ng-model='character.race' />
+            <select ng-show='character.editing' ng-model='character.race'>
+                <option ng-repeat='(race, data) in races'>{{race}}</option>
+            </select>
+            <p ng-hide='character.editing' class='class'>Class: {{character.class}}</p>
+            <label ng-show='character.editing' ng-model='character.class'>Class: </label>
+            <select ng-show='character.editing' ng-model='character.class'>
+                <option ng-repeat='(class, data) in classes'>{{class}}</option>
+            </select>
+            <h3>Stats: </h3>
             <ul class='stats'>
                 <li ng-repeat='(stat,value) in character.stats'>
                     <p ng-hide='character.editing'>
@@ -23,6 +31,7 @@
                     <input ng-show='character.editing' type='number' min='0' max='20' step='1' ng-model='value' />
                 </li>
             </ul>
+            <p ng-hide='character.editing'>Pts: {{character.points}}</p>
             <button class='edit_button' ng-click='character.editing = !character.editing'>
                 {{!character.editing ? 'Edit Character': 'Save'}}
             </button>
